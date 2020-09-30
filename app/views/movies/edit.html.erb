@@ -1,0 +1,28 @@
+<h1>Edit <%= @movie.title %></h1>
+<form action="/movies/<%= @movie.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<p class="form-group">
+		<label>Title:</label>
+		<input type="text" name="movie[title]" value="<%= @movie.title %>" class="form-control">
+	</p>
+	<p class="form-group">
+		<label>Duration:</label>
+		<input type="text" name="movie[duration]" value="<%= @movie.duration %>" class="form-control">
+	</p>
+	<p class="form-group">
+		<label>Rating:</label>
+		<input type="text" name="movie[rating]" value="<%= @movie.rating %>" class="form-control">
+	</p>
+	<p class="form-group">
+		<label>Release Date:</label>
+		<input type="text" name="movie[release_date]" value="<%= @movie.release_date.strftime("%Y-%m-%d") %>" class="form-control">
+	</p>
+	<input type="submit" value="Update" class="btn btn-primary">
+</form>
+<br />
+<% if flash[:errors] %> 
+	<% flash[:errors].each do |e| %>
+	<div class="alert alert-info"><%= e %></div>
+	<% end %>
+<% end %>
